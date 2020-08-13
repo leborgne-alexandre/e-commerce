@@ -7,6 +7,9 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
+use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+
 class ProduitType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -16,7 +19,12 @@ class ProduitType extends AbstractType
             ->add('Description')
             ->add('Prix')
             ->add('Stock')
-            ->add('Photo')
+            ->add('Photo', FileType::class, [
+                'required' => false,
+                'mapped' => false
+            ])
+            ->add('save', SubmitType::class);
+
         ;
     }
 

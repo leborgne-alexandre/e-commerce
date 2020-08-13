@@ -1,9 +1,51 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello DisciplineController!{% endblock %}
+{% block title %}Accueil{% endblock %}
 
 {% block body %}
 
-<h1>Accueil</h1>
+    {% if produits is not empty %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Photo</th>
+                    <th>{{ 'produit.Nom'|trans }}</th>
+                    <th>{{ 'produit.Description'|trans }}</th>
+                    <th>{{ 'produit.Prix'|trans }}</th>
+                    <th>{{ 'produit.Stock'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+                    <tr>
+                        <td>
+                        {% if produit.photo is not empty %}
+                            <img src="{{asset('uploads/'~ produit.photo)}}" style="max-width: 200px;">
+                        {% endif %}
+                        </td>
+                        <td>   
+                            <a href="{{ path( 'produit_details', {'id': produit.id} ) }}">
+                                {{produit.nom}}
+                            </a>                        
+                        </td>
+                        <td>
+                            {{produit.Description}}
+                        </td>
+                        <td>
+                            {{produit.Prix}}
+                        </td>
+                        <td>
+                            {{produit.Stock}}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% else %}
+    <p>{{ 'produit.noProd'|trans }}</p>
+    {% endif %}
+
+    <h2>{{ 'produit.addProd'|trans }}</h2>
+    {{form(ajout_produit)}}
 
 {% endblock %}

@@ -3,7 +3,11 @@
 namespace App\Entity;
 
 use App\Repository\ProduitRepository;
+
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
@@ -19,6 +23,13 @@ class Produit
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotNull
+     * @Assert\Length(
+     *  min = 1,
+     *  max = 255,
+     *  minMessage = "Product name must be at least {{ limit }} characters long",
+     *  maxMessage = "Product name cannot be longer than {{ limit }} characters"
+     * )
      */
     private $Nom;
 
@@ -26,14 +37,16 @@ class Produit
      * @ORM\Column(type="text", nullable=true)
      */
     private $Description;
-
+    
     /**
      * @ORM\Column(type="float")
+     * @Assert\PositiveOrZero
      */
     private $Prix;
 
     /**
      * @ORM\Column(type="integer")
+     * @Assert\PositiveOrZero
      */
     private $Stock;
 
