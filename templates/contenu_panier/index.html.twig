@@ -1,20 +1,55 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ContenuPanierController!{% endblock %}
+{% block title %}Panier{% endblock %}
 
 {% block body %}
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
 
-<div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
+{% set total = 0%}
 
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Users/Tomas/Desktop/IPSSI/Session 14 Symfony bis/symf/symfony_e_commerce/src/Controller/ContenuPanierController.php'|file_link(0) }}">src/Controller/ContenuPanierController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Users/Tomas/Desktop/IPSSI/Session 14 Symfony bis/symf/symfony_e_commerce/templates/contenu_panier/index.html.twig'|file_link(0) }}">templates/contenu_panier/index.html.twig</a></code></li>
-    </ul>
-</div>
+    {% if paniers is not empty %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'panier.Produit.Nom'|trans }}</th>
+                    <th>{{ 'panier.Quantite'|trans }}</th>
+                    <th>{{ 'panier.Prix'|trans }}</th>
+                    <th>{{ 'panier.Montant'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for panier in paniers %}
+                    <tr>
+                        <td>   
+                            {{panier.Produit.Nom}}
+                        </td>
+                        <td>
+                            {{panier.Quantite}}
+                        </td>
+                        <td>
+                            {{panier.Produit.Prix}}
+                        </td>
+                        <td>
+                            {% set count = panier.Produit.Prix * panier.Quantite %}
+                            {{count}}
+                            {% set total = total + count %}
+                        </td>
+                        <td>	
+                            <a href="{{path('panier_delete', {'id':panier.id})}}" class="btn btn-danger">
+                            {{ 'panier.delProd'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>{{ 'nbprod'|trans }}: {{paniers|length}}</p>
+        <p>{{ 'totpan'|trans }}: {{total}}</p>
+
+    {% else %}
+    <p>{{ 'panier.noPan'|trans }}</p>
+    {% endif %}
+
+    <h2>{{ 'panier.addProd'|trans }}</h2>
+    {{form(ajout_panier)}}
 {% endblock %}

@@ -7,6 +7,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
+
+use Symfony\Component\Validator\Constraints as Assert;
+
 /**
  * @ORM\Entity(repositoryClass=ContenuPanierRepository::class)
  */
@@ -42,8 +45,8 @@ class ContenuPanier
 
     public function __construct()
     {
-        $this->Produit = new ArrayCollection();
-    }
+        $this->ajout = new \DateTime();
+        $this->etat = false;    }
 
     public function getId(): ?int
     {
@@ -53,7 +56,7 @@ class ContenuPanier
     /**
      * @return Collection|Produit[]
      */
-    public function getProduit(): Collection
+    public function getProduit(): ?Collection
     {
         return $this->Produit;
     }
