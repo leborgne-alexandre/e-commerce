@@ -9,6 +9,10 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
+
+// TODO: Add relation with user when user is created 
+
+
 /**
  * @ORM\Entity(repositoryClass=ProduitRepository::class)
  */

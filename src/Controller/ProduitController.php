@@ -108,4 +108,28 @@ class ProduitController extends AbstractController
     }
 
 
+    /**
+     * @Route("/panier", name="add_panier")
+     */
+    public function additem(Request $request, Produit $produit = null, TranslatorInterface $translator)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $panier = new ContenuPanier();
+        $form = $this->createForm(ContenuPanierType::class, $produit);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $em->persist($produit);
+            $em->flush();
+
+            $this->addFlash('success', $translator->trans('Panier crée'));
+        }
+        $panier = $em->getRepository(ContenuPanier::class)->findAll();
+
+        return $this->render('contenu_panier/index.html.twig', [
+            'paniers' => $panier,
+            'ajout_panier' => $form->createView()
+        ]);
+    }
 }

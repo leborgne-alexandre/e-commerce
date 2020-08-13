@@ -45,8 +45,9 @@ class ContenuPanier
 
     public function __construct()
     {
-        $this->ajout = new \DateTime();
-        $this->etat = false;    }
+        $this->Quantite = 1;
+        $this->Date = new \DateTime();
+    }
 
     public function getId(): ?int
     {

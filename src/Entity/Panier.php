@@ -32,6 +32,11 @@ class Panier
      */
     private $contenuPanier;
 
+    public function __construct()
+    {
+        $this->Etat = false;    
+    }
+
     public function getId(): ?int
     {
         return $this->id;
