@@ -11,9 +11,10 @@
 
 	<h2>{{ 'produit.Prix'|trans }} : {{produit.Prix}}</h2>
 	<h2>{{ 'produit.Stock'|trans }} : {{produit.Stock}}</h2>
-		
+	
+	{% if is_granted('ROLE_ADMIN') %}
 	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">Delete</a>
-
+	{% endif %}
 	<p>Modifier</p>
 
 	{{form(produit_details)}}
