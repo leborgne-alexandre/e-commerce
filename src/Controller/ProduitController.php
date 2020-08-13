@@ -14,7 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ProduitController extends AbstractController
 {
     /**
-     * @Route("/produits", name="produits")
+     * @Route("/", name="produits")
      */
     public function index(Request $request, TranslatorInterface $translator)
     {
