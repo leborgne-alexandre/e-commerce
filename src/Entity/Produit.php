@@ -55,6 +55,16 @@ class Produit
      */
     private $Photo;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=ContenuPanier::class, mappedBy="Produit")
+     */
+    private $contenuPaniers;
+
+    public function __construct()
+    {
+        $this->contenuPaniers = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -116,6 +126,34 @@ class Produit
     public function setPhoto(?string $Photo): self
     {
         $this->Photo = $Photo;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|ContenuPanier[]
+     */
+    public function getContenuPaniers(): Collection
+    {
+        return $this->contenuPaniers;
+    }
+
+    public function addContenuPanier(ContenuPanier $contenuPanier): self
+    {
+        if (!$this->contenuPaniers->contains($contenuPanier)) {
+            $this->contenuPaniers[] = $contenuPanier;
+            $contenuPanier->addProduit($this);
+        }
+
+        return $this;
+    }
+
+    public function removeContenuPanier(ContenuPanier $contenuPanier): self
+    {
+        if ($this->contenuPaniers->contains($contenuPanier)) {
+            $this->contenuPaniers->removeElement($contenuPanier);
+            $contenuPanier->removeProduit($this);
+        }
 
         return $this;
     }
