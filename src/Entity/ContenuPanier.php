@@ -45,7 +45,6 @@ class ContenuPanier
 
     public function __construct()
     {
-        $this->Quantite = 1;
         $this->Date = new \DateTime();
     }
 

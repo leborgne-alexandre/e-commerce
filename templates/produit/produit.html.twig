@@ -9,16 +9,12 @@
 		<img src="{{asset('uploads/'~ produit.photo)}}" style="max-width: 200px;">
 	{% endif %}
 
-	<h2>{{ 'produit.Prix'|trans }} : {{produit.Prix}}</h2>
-	<h2>{{ 'produit.Stock'|trans }} : {{produit.Stock}}</h2>
+	<h2>{{ 'produit.prix'|trans }} : {{produit.Prix}}</h2>
+	<h2>{{ 'produit.stock'|trans }} : {{produit.Stock}}</h2>
 
 	<a href="{{path('add_panier', {'id':produit.id})}}" class="btn btn-success">Add item</a>
 
 		
 	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">Delete</a>
-
-	<p>Modifier produit</p>
-
-	{{form(produit_details)}}
 
 {% endblock %}

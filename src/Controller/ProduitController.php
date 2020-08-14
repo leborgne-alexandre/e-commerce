@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use App\Entity\Produit;
 use App\Form\ProduitType;
+use App\Entity\ContenuPanier;
+use App\Form\ContenuPanierType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
@@ -107,29 +109,35 @@ class ProduitController extends AbstractController
         return $this->redirectToRoute('produits');
     }
 
-
     /**
-     * @Route("/panier", name="add_panier")
+     * @Route("/panier/{id}", name="add_panier")
      */
-    public function additem(Request $request, Produit $produit = null, TranslatorInterface $translator)
+    public function produit(Request $request, Produit $produit=null, TranslatorInterface $t)
     {
-        $em = $this->getDoctrine()->getManager();
+        if($produit != null){
+            $panier = new ContenuPanier();
+            $form = $this->createForm(ContenuPanierType::class, $panier);
+            $form->handleRequest($request);
+            if($form->isSubmitted() && $form->isValid()){
+                $em = $this->getDoctrine()->getManager();
 
-        $panier = new ContenuPanier();
-        $form = $this->createForm(ContenuPanierType::class, $produit);
-        $form->handleRequest($request);
+                $panier->addProduit($produit);
+                $panier->setQuantite(1);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $em->persist($produit);
-            $em->flush();
+                $em->persist($panier);
+                $em->flush();
+    
+                $this->addFlash('success', $t->trans("Produit ajouté"));
+            }
 
-            $this->addFlash('success', $translator->trans('Panier crée'));
+            return $this->render('contenu_panier/index.html.twig', [
+                'paniers'      => $panier,
+                'ajout_produit' => $form->createView()
+            ]);
         }
-        $panier = $em->getRepository(ContenuPanier::class)->findAll();
-
-        return $this->render('contenu_panier/index.html.twig', [
-            'paniers' => $panier,
-            'ajout_panier' => $form->createView()
-        ]);
+        else{
+            $this->addFlash('danger', $t->trans("Produit introuvable"));
+            return $this->redirectToRoute('produits');
+        }
     }
 }
