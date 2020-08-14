@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<h1 style="color: #ffd803; margin-top: 30px">OOPS ! -  ERROR 500</h1>
+<a class=" btn button-red" href="{{ path('produits') }}">Go Home</a>
+<img class="full-background"src="{{ asset('img/error.png') }}" alt="error">
+
+
+<style>
+
+body{ 
+
+background:#2d2d2d;
+
+}
+
+.button-red{ 
+
+margin:20px;
+background: #9b2a02; 
+color: #ffd803;
+padding:20px;
+text-transform:uppercase;
+font-weight: bold;
+
+
+}
+
+.full-background{ 
+  width: 100%;
+  height: auto;
+}
+
+
+</style>
+
+{% endblock %}
