@@ -14,7 +14,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ProduitController extends AbstractController
 {
     /**
-     * @Route("/produits", name="produits")
+     * @Route("/", name="produits")
      */
     public function index(Request $request, TranslatorInterface $translator)
     {
@@ -93,6 +93,7 @@ class ProduitController extends AbstractController
      */
     public function delete(Produit $produit = null, TranslatorInterface $translator)
     {
+        $this->denyAccessUnlessGranted('ROLE_ADMIN', null, 'User tried to access a page without having ROLE_ADMIN');
 
         if ($produit != null) {
 
