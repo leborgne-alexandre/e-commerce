@@ -13,6 +13,9 @@
 	<h2>{{ 'produit.stock'|trans }} : {{produit.Stock}}</h2>
 
 	<a href="{{path('add_panier', {'id':produit.id})}}" class="btn btn-success">Add item</a>
+	{% if is_granted('ROLE_ADMIN') %}
+	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">Delete</a>
+	{% endif %}
 
 		
 	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">Delete</a>
