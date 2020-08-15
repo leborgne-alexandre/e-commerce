@@ -17,7 +17,12 @@
 	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
 	{% endif %}
 
-		
-	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
+	
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
+		<h2>{{ 'Edit:'|trans }}</h2>    
+		{{form(produit_details)}}
+
+	{% endif %}
 
 {% endblock %}

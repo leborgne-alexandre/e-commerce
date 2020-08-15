@@ -44,8 +44,11 @@
     {% else %}
     <p>{{ 'produit.noProd'|trans }}</p>
     {% endif %}
+        
+    {% if is_granted('ROLE_ADMIN') %}
+        <h2>{{ 'produit.addProd'|trans }}</h2>
+        {{form(ajout_produit)}}
+    {% endif %}
 
-    <h2>{{ 'produit.addProd'|trans }}</h2>
-    {{form(ajout_produit)}}
 
 {% endblock %}
