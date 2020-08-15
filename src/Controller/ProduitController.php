@@ -142,22 +142,21 @@ class ProduitController extends AbstractController
     /**
      * @Route("/panier/{id}", name="add_panier")
      */
-    public function produit(Request $request, Produit $produit=null, TranslatorInterface $t)
+    public function produit(Request $request, Produit $produit=null, TranslatorInterface $translator)
     {
         if($produit != null){
             $panier = new ContenuPanier();
             $form = $this->createForm(ContenuPanierType::class, $panier);
             $form->handleRequest($request);
+            dump($form);
             if($form->isSubmitted() && $form->isValid()){
-                $em = $this->getDoctrine()->getManager();
-
-                $panier->addProduit($produit);
+                $em = $this->getDoctrine()->getManager();                
+                $panier->setProduit($produit);
                 $panier->setQuantite(1);
-
                 $em->persist($panier);
                 $em->flush();
     
-                $this->addFlash('success', $t->trans("Produit ajouté"));
+                $this->addFlash('success', $translator->trans("Produit ajouté"));
             }
 
             return $this->render('contenu_panier/index.html.twig', [
@@ -166,7 +165,7 @@ class ProduitController extends AbstractController
             ]);
         }
         else{
-            $this->addFlash('danger', $t->trans("Produit introuvable"));
+            $this->addFlash('danger', $translator->trans("Produit introuvable"));
             return $this->redirectToRoute('produits');
         }
     }
