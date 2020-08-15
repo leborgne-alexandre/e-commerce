@@ -1,14 +1,26 @@
 Accueil: Inicio
 Panier: Canasta
-Registrer: Inscripcion
-Login: Identificacion
+Registrer: Inscripción
+Register: Inscripción
+Login: Identificación
+Log in!: Identificación
+
+You are logged in as : Esta identificado como 
+Please sign in: Regístrese por favor
+Email: Email
+Password: Clave
+Sign in: Regístrese
 
 Produit crée: Producto creado
 Produit introuvable: Producto no encontrado
 Produit supprimé: Producto suprimido
 
 Panier crée: Producto agregado
+Produit ajouté: Producto agregado
 Panier supprimé: Producto suprimido
+
+Delete: Delete
+Add item: Add item
 
 paniers: Canasta
 produits: Productos

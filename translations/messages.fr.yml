@@ -1,14 +1,26 @@
 Accueil: Accueil
 Panier: Panier
 Registrer: Inscription
+Register: 
 Login: Identification
+Log in!: Identification
+
+You are logged in as : Vous etes identifié comme 
+Please sign in: Veuillez vous identifier
+Email: Email
+Password: Mot de passe
+Sign in: Identification
 
 Produit crée: Produit crée
 Produit introuvable: Produit introuvable
 Produit supprimé: Produit supprimé
 
 Panier crée: Produit ajouté
+Produit ajouté: Produit ajouté
 Panier supprimé: Produit supprimé
+
+Delete: Delete
+Add item: Add item
 
 paniers: Panier
 produits: Produits
