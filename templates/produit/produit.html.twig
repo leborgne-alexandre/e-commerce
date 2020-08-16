@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{produit.nom}} {% endblock %}
+
+{% block body %}
+	<h1>{{produit.Nom}}</h1>
+
+	{% if produit.Photo is not empty %}
+		<img src="{{asset('uploads/'~ produit.photo)}}" style="max-width: 200px;">
+	{% endif %}
+
+	<h2>{{ 'produit.prix'|trans }} : {{produit.Prix}}</h2>
+	<h2>{{ 'produit.stock'|trans }} : {{produit.Stock}}</h2>
+
+	<a href="{{path('add_panier', {'id':produit.id})}}" class="btn btn-success">{{ 'Add item'|trans }}</a>
+	{% if is_granted('ROLE_ADMIN') %}
+	<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
+	{% endif %}
+
+	
+	{% if is_granted('ROLE_ADMIN') %}
+		<a href="{{path('produit_delete', {'id':produit.id})}}" class="btn btn-danger">{{ 'Delete'|trans }}</a>
+		<h2>{{ 'Edit:'|trans }}</h2>    
+		{{form(produit_details)}}
+
+	{% endif %}
+
+{% endblock %}

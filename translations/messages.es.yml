@@ -1,0 +1,55 @@
+Accueil: Inicio
+Panier: Canasta
+Registrer: Inscripción
+Register: Inscripción
+Login: Identificación
+Log in!: Identificación
+
+You are logged in as : Esta identificado como 
+Please sign in: Regístrese por favor
+Email: Email
+Password: Clave
+Sign in: Regístrese
+
+Produit crée: Producto creado
+Produit introuvable: Producto no encontrado
+Produit supprimé: Producto suprimido
+
+Panier crée: Producto agregado
+Produit ajouté: Producto agregado
+Panier supprimé: Producto suprimido
+
+Delete: Delete
+Edit: Editar
+Add item: Add item
+
+paniers: Canasta
+produits: Productos
+
+Nom: Nombre
+Quantite: Quantidad
+Prix: Precio
+PhotoUpload: Photo agregada
+
+produit:
+    nom: Nombre
+    quantite: Stock
+    prix: Precio
+    noProd: No hay ningun producto
+    addProd: Ingrese un producto
+
+panier:
+    nom: Nombre
+    quantite: Qte
+    montant: Total
+    delProd: Suprimido
+    noPan: No hay nada en la canasta
+    addProd: Agrege un producto
+    price: Precio
+    prix: Precio
+    produit.nom: Nombre
+    
+
+
+nbprod: Numero productos
+totpan: Total canasta

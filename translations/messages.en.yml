@@ -1,0 +1,58 @@
+Accueil: Home
+Panier: Basket
+Registrer: Register
+Register: Register
+Login: Login
+Log in!: Log in!
+
+You are logged in as : You are logged in as 
+Please sign in: Please sign in
+Email: Email
+Password: Password
+Sign in: Sign in
+
+Produit crée: Product created
+Produit introuvable: Product missing
+Produit supprimé: Product deleted
+
+Panier crée: Product added
+Produit ajouté: Product added
+Panier supprimé: Product removed
+
+Delete: Delete
+Edit: Edit
+Add item: Add item
+
+paniers: Basket
+produits: Products
+
+Nom: Name
+Quantite: Qty
+Prix: Price
+PhotoUpload: Photo Upload
+
+produit:
+    nom: Name
+    quantite: Stock
+    prix: Price
+    noProd: There are no products yet
+    addProd: Add a product
+    description: Description
+    stock: Stock
+
+
+
+panier:
+    nom: Name
+    quantite: Qty
+    montant: Total
+    delProd: Delete
+    noPan: There is nothing here yet
+    addProd: Add a basket
+    price: Price
+    prix: Price
+    produit.nom: Name
+
+
+nbprod: Nb products
+totpan: Total basket

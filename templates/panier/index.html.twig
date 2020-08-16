@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Panier{% endblock %}
+
+{% block body %}
+
+{% set total = 0%}
+
+    {% if paniers is not empty %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>{{ 'panier.produit.nom'|trans }}</th>
+                    <th>{{ 'panier.quantite'|trans }}</th>
+                    <th>{{ 'panier.prix'|trans }}</th>
+                    <th>{{ 'panier.montant'|trans }}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for panier in paniers %}
+                    <tr>
+                        <td>   
+                            {{panier.Produit.Nom}}
+                        </td>
+                        <td>
+                            {{panier.Quantite}}
+                        </td>
+                        <td>
+                            {{panier.Produit.Prix}}
+                        </td>
+                        <td>
+                            {% set count = panier.Produit.Prix * panier.Quantite %}
+                            {{count}}
+                            {% set total = total + count %}
+                        </td>
+                        <td>	
+                            <a href="{{path('panier_delete', {'id':panier.id})}}" class="btn btn-danger">
+                            {{ 'panier.delProd'|trans }}
+                            </a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <p>{{ 'nbprod'|trans }}: {{paniers|length}}</p>
+        <p>{{ 'totpan'|trans }}: {{total}}</p>
+
+        <a class="btn btn-success">Ok</a>
+
+
+    {% else %}
+    <p>{{ 'panier.noPan'|trans }}</p>
+    {% endif %}
+
+    <!-- 
+    <h2>{{ 'panier.addProd'|trans }}</h2>
+    {{form(ajout_panier)}}
+    -->
+{% endblock %}
